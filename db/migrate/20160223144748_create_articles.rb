@@ -2,8 +2,9 @@ class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles do |t|
 
-   	  t.string :title, :null => false
-      t.integer :points 
+      t.string :entry_id, :null => false
+      t.string :title
+      t.integer :points
       t.integer :comments 
       t.text :image_url 
       t.references :category
@@ -12,5 +13,6 @@ class CreateArticles < ActiveRecord::Migration
     end
 
     add_index :articles, :category_id
+    add_index :articles, :entry_id, unique: true
   end
 end
